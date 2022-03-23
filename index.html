@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+
+
+</head>
+<body>
+<h1 id="titr1">
+    Bonjour à tous...
+</h1>
+<div id="kevin">
+    <p></p>
+    <p></p>
+</div>
+
+<div id="quentin">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<button id="reset" onclick="reset()">Reset the game</button>
+<div id="jeu">
+    <div id="jou1">
+        Player X :<br>Victory : 0
+    </div>
+    <table id="mrp">
+        <tr>
+            <td onclick="tntxcaseSmall(txst[0])"></td>
+            <td onclick="tntxcaseSmall(txst[1])"></td>
+            <td onclick="tntxcaseSmall(txst[2])"></td>
+        </tr>
+        <tr>
+            <td onclick="tntxcaseSmall(txst[3])"></td>
+            <td onclick="tntxcaseSmall(txst[4])"></td>
+            <td onclick="tntxcaseSmall(txst[5])"></td>
+        </tr>
+        <tr>
+            <td onclick="tntxcaseSmall(txst[6])"></td>
+            <td onclick="tntxcaseSmall(txst[7])"></td>
+            <td onclick="tntxcaseSmall(txst[8])"></td>
+        </tr>
+    </table>
+    <div id="jou2">
+        Player O :<br>Victory : 0
+    </div>
+</div>
+<div id="laug">
+    En attente du premier match ...
+</div>
+<br>
+<br>
+<button id="bt1" onclick="changecolor()">Bouton 1</button>
+<button id="bt2" onclick="changesize()">Bouton 2</button>
+<button id="bt3" onclick="changetext()">Bouton 3</button>
+<button id="bt3" onclick="concatext()">Bouton 4</button>
+
+
+</body>
+</html>
+<script>
+
+    ///////////////////////////////////////////////////////////////
+
+
+
+    var mainbutton = document.getElementById("titr1")
+
+    function changecolor(){
+        console.log(mainbutton)
+        var sColor = mainbutton.style.color
+        console.log(sColor)
+        mainbutton.style.color="red"
+    }
+
+    function changesize(){
+        var fsize = mainbutton.style.fontSize
+        console.log(fsize)
+        mainbutton.style.fontSize='96pt'
+    }
+
+    function changetext(){
+        var chgt = mainbutton.innerText
+        mainbutton.innerText="Tu ne t'attendais pas à un tel changement ?"
+        return chgt
+    }
+
+    function concatext(){
+        mainbutton.innerText = mainbutton.innerText+"Dommage..."
+    }
+
+    /*var main = document.getElementById('kevin');
+
+    
+    function testruestring() {
+        var ppt = window.prompt("Vérif string ?")
+        var regex1 = /^[a-zA-Z -]+$/
+        ppt = ppt.trim();
+        if ( ppt.match(regex1) &&  ppt.length>1 ) {
+            var para1 = main.getElementsByTagName("p")[0]
+            para1.innerText="je m'appelle "+ppt
+        } else {
+            console.log(ppt.match(regex1))
+            testruestring()
+        }  
+    }
+    testruestring();
+    
+
+    function testruenumber() {
+        var nbr = window.prompt("Vérif number ?");
+        var regex2 = /^[0-9]*$/
+        nbr = nbr.trim();
+        if ( nbr.match(regex2) &&  nbr.length>0 && Number(nbr)<110) {
+            var para2 = main.getElementsByTagName("p")[1]
+            para2.innerText="je suis âgé de "+ nbr +" ans"
+        } else {
+            console.log(nbr.match(regex2))
+            testruenumber()
+        }  
+    }
+    testruenumber();*/
+
+    //////////////////////////////////////////////////////////
+
+    /* var main = document.getElementById('quentin');
+
+    
+    function testruestring() {
+        var ppt = window.prompt("Vérif string ?")
+        var regex1 = /^[a-zA-Z -]+$/
+        ppt = ppt.trim();
+        if ( ppt.match(regex1) &&  ppt.length>1 ) {
+            var para1 = main.getElementsByTagName("li")[0]
+            para1.innerText="je m'appelle "+ppt
+        } else {
+            console.log(ppt.match(regex1))
+            testruestring()
+        }  
+    }
+    testruestring();
+    
+
+    function testruenumber() {
+        var nbr = window.prompt("Vérif number ?");
+        var regex2 = /^[0-9]*$/
+        nbr = nbr.trim();
+        if ( nbr.match(regex2) &&  nbr.length>0 && Number(nbr)<110) {
+            var para2 = main.getElementsByTagName("li")[3]
+            para2.innerText="je suis âgé de "+ nbr +" ans"
+        } else {
+            console.log(nbr.match(regex2))
+            testruenumber()
+        }  
+    }
+    testruenumber(); */
+
+    /////////////////////////////////////////////////////
+    
+    var morpion = document.getElementById('mrp');
+    /*var case1 = morpion.getElementsByTagName("td")[0]
+    var case2 = morpion.getElementsByTagName("td")[1]
+    var case3 = morpion.getElementsByTagName("td")[2]
+    var case4 = morpion.getElementsByTagName("td")[3]
+    var case5 = morpion.getElementsByTagName("td")[4]
+    var case6 = morpion.getElementsByTagName("td")[5]
+    var case7 = morpion.getElementsByTagName("td")[6]
+    var case8 = morpion.getElementsByTagName("td")[7]
+    var case9 = morpion.getElementsByTagName("td")[8]*/
+    
+
+    
+
+    var reset =()=>{
+        var megacase = morpion.getElementsByTagName("td");
+        for (eachcase of megacase)
+        {
+            eachcase.innerText=""
+        }
+        tourdejeu=0
+        victory=0
+        return tourdejeu,victory
+    }
+
+
+    var vicX = document.getElementById("jou1")
+    var vicO = document.getElementById("jou2")
+    var laug = document.getElementById("laug")
+    
+    var countvictoireX=0
+    var countvictoireO=0
+    var victoireO = 0
+    var victoireX = 0
+    
+    var joueur1 = window.prompt("Nom du Joueur1")
+    var joueur2 = window.prompt("Nom du Joueur2")
+
+    var listV=[" s'est fait démolir par "," à vaincu "," vient de terrasser ",
+    " a marché sur son adversaire "," s'est essuyé les chaussures sur "]
+
+    var txst = morpion.getElementsByTagName('td');
+    var victory = 0;
+    var pion ="x"
+    var tourdejeu = 0;
+
+    var score = window.localStorage
+    
+    
+
+        function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+        function defjoueurs (){
+        vicX.innerText="Player X: " + joueur1 + " Victory : 0";
+        vicO.innerText="Player O: " + joueur2 + " Victory : 0";
+
+        if (!score) {
+        score = {scoreJ1:"",scoreJ2:""}
+        } else {
+        countvictoireX=score.scoreJ1;
+        countvictoireO=score.scoreJ2;
+        if (!countvictoireX){
+            countvictoireX=0
+        }
+        if(!countvictoireO){
+            countvictoireO=0
+        }
+        vicX.innerText="Player X: " + joueur1 +  "Victory :" + countvictoireX;
+        vicO.innerText="Player O :" + joueur2 + "Victory :" + countvictoireO;
+        }
+
+    }
+
+    defjoueurs();
+
+        function victoiredeX(){
+        if (victoireX==1) {
+        countvictoireX ++
+        window.localStorage.setItem('scoreJ1',countvictoireX)
+        victoireX = 0
+        vicX.innerText="Player X: " + joueur1 +  "Victory :" + score.scoreJ1
+        laug.innerText= joueur1 + listV[getRandomInt(5)] + joueur2
+        return countvictoireX,victoireX,score.scoreJ1
+    }}
+
+        function victoiredeO(){
+        if (victoireO==1) {
+        countvictoireO ++
+        window.localStorage.setItem('scoreJ2',countvictoireO)
+        victoireO = 0
+        vicO.innerText="Player O :" + joueur2 + "Victory :" + score.scoreJ2
+        laug.innerText= joueur2 + listV[getRandomInt(5)] + joueur1
+        return countvictoireO,victoireO,score.scoreJ2
+    }
+    }
+    
+    ////// This could be a verification solution //////
+    
+    
+
+    //////////////////////////////////////////////
+    var ListVerificateurHori = [
+        [txst[0],txst[1],txst[2]],
+        [txst[3],txst[4],txst[5]],
+        [txst[6],txst[7],txst[8]]
+    ]
+    var ListVerificateurVerti = [
+        [txst[0],txst[3],txst[6]],
+        [txst[1],txst[4],txst[7]],
+        [txst[2],txst[5],txst[8]]
+    ]
+    var ListVerificateurDiag = [
+        [txst[0],txst[4],txst[8]],
+        [txst[2],txst[4],txst[6]]
+    ]
+
+
+    function megabrainstormHori(){
+        for(filou=0;filou<9;filou++ )
+        {
+            if(txst[filou].innerText == txst[(filou+1)].innerText &&
+             txst[(filou+1)].innerText == txst[(filou+2)].innerText &&
+            txst[filou].innerText.length!=0 && txst[filou+1].innerText.length!=0 &&
+            txst[filou+2].innerText.length!=0 && filou%3==0)
+            {   
+                victory++ 
+                if (txst[filou].innerText == 'x') {
+                    victoireX++
+                } else if (txst[filou].innerText == 'o') {
+                    victoireO++
+                } 
+                window.alert("Victoire ! - Ligne horizontale")          
+                break;
+            } else if (filou==6){
+                break;
+            }
+        }return victoireX,victoireO,victory
+    }
+
+    function megabrainstormVerti(){
+        for(filou=0;filou<3;filou++ )
+        {
+            if(txst[filou].innerText == txst[(filou+3)].innerText &&
+             txst[(filou+3)].innerText == txst[(filou+6)].innerText &&
+            txst[filou].innerText.length!=0 && txst[filou+3].innerText.length!=0 &&
+            txst[filou+6].innerText.length!=0)
+            {   
+                victory++ 
+                if (txst[filou].innerText == 'x') {
+                    victoireX++
+                } else if (txst[filou].innerText == 'o') {
+                    victoireO++
+                } 
+                window.alert("Victoire ! - Ligne verticale !")
+                break;
+            }
+        }return victoireX,victoireO,victory
+    }
+
+    function megabrainstormDiag(){
+        if(txst[0].innerText == txst[4].innerText &&
+        txst[4].innerText == txst[8].innerText &&
+        txst[0].innerText.length!=0 && txst[4].innerText.length!=0 &&
+        txst[8].innerText.length!=0)
+        {   
+            victory++ 
+            if (txst[0].innerText == 'x') {
+            victoireX++
+            } else if (txst[0].innerText == 'o') {
+            victoireO++
+            } 
+            window.alert("Victoire ! - Diagonale !")
+        } else if (txst[2].innerText == txst[4].innerText &&
+        txst[4].innerText == txst[6].innerText &&
+        txst[2].innerText.length!=0 && txst[4].innerText.length!=0 &&
+        txst[6].innerText.length!=0) {
+            victory++ 
+            if (txst[0].innerText == 'x') {
+            victoireX++
+            } else if (txst[0].innerText == 'o') {
+            victoireO++
+            } 
+            window.alert("Victoire ! - Diagonale !")
+        }
+        return victoireX,victoireO,victory
+    }
+
+    //////////////////////////////////////
+
+    /////// Autre bloc de vérification horizontal ////////
+
+     /*   if (case1.innerText == case2.innerText == case3.innerText && 
+            case1.innerText.length!=0 && case2.innerText.length!=0 && case3.innerText.length!=0) {
+                window.alert("Victoire ! - Horizontal ligne 1");
+                victory++ 
+                if (case2.innerText == 'x') {
+                    victoireX++
+                } else if (case2.innerText == 'o') {
+                    victoireO++
+                } 
+                return victoireX,victoireO,victory} */
+
+    /////////////////////////////////////////////////////
+
+
+       /* function testcombiHori()
+        {
+        if (case1.innerText+case2.innerText+case3.innerText == "xxx" ) {
+            window.alert("Victoire ! - Horizontal ligne 1");
+            victoireX++
+            victory++
+            return victoireX,victory
+        } else if (case1.innerText+case2.innerText+case3.innerText== "ooo") {
+            window.alert("Victoire ! - Horizontal ligne 1");
+            victoireO++
+            victory++
+            return victoireO,victory
+
+        } else if (case4.innerText+case5.innerText+case6.innerText == "xxx") {
+            window.alert("Victoire ! - Horizontal ligne 2");
+            victoireX++
+            victory++
+            return victoireX,victory
+
+        } else if (case4.innerText+case5.innerText+case6.innerText == "ooo") {
+            window.alert("Victoire ! - Horizontal ligne 2");
+            victoireO++
+            victory++
+            return victoireO,victory
+
+        } else if (case7.innerText+case8.innerText+case9.innerText == "xxx") {
+            window.alert("Victoire ! - Horizontal ligne 3");
+            victoireX++
+            victory++
+            return victoireX,victory
+
+        } else if (case7.innerText+case8.innerText+case9.innerText == "ooo") {
+            window.alert("Victoire ! - Horizontal ligne 3");
+            victoireO++
+            victory++
+            return victoireO,victory
+        }}*/
+
+        /* function testcombiVerti()
+        {
+        if (case1.innerText+case4.innerText+case7.innerText == "xxx" ) {
+            window.alert("Victoire ! - Vertical ligne 1");
+            victoireX++
+            victory++
+            return victoireX,victory
+           
+        } else if (case1.innerText+case4.innerText+case7.innerText== "ooo") {
+            window.alert("Victoire ! - Vertical ligne 1");
+            victoireO++
+            victory++
+            return victoireO,victory
+
+        } else if (case2.innerText+case5.innerText+case8.innerText == "xxx") {
+            window.alert("Victoire ! - Vertical ligne 2");
+            victoireX++
+            victory++
+            return victoireX,victory
+
+        } else if (case2.innerText+case5.innerText+case8.innerText == "ooo") {
+            window.alert("Victoire ! - Vertical ligne 2");
+            victoireO++
+            victory++
+            return victoireO,victory
+            
+        } else if (case3.innerText+case6.innerText+case9.innerText == "xxx") {
+            window.alert("Victoire ! - Vertical ligne 3");
+            victoireX++
+            victory++
+            return victoireX,victory
+
+        } else if (case3.innerText+case6.innerText+case9.innerText == "ooo") {
+            window.alert("Victoire ! - Vertical ligne 3");
+            victoireO++
+            victory++
+            return victoireO,victory
+        }} */
+
+        /* function testcombidiag()
+        {
+            if (case1.innerText+case5.innerText+case9.innerText == "xxx") {
+                window.alert("Victoire ! - Diag Haut gauche -> Bas droite");
+                victoireX++
+                victory++
+                return victoireX,victory
+
+            } else if (case1.innerText+case5.innerText+case9.innerText== "ooo") {
+                window.alert("Victoire ! - Diag Haut gauche -> Bas droite");
+                victoireO++
+                victory++
+                return victoireO,victory
+
+            } else if (case3.innerText+case5.innerText+case7.innerText == "xxx") {
+                window.alert("Victoire ! - Diag Bas gauche -> Haut droite");
+                victoireX++
+                victory++
+                return victoireX,victory
+
+            } else if (case3.innerText+case5.innerText+case7.innerText== "ooo") {
+                window.alert("Victoire ! - Diag Bas gauche -> Haut droite");
+                victoireO++
+                victory++
+                return victoireO,victory
+            }
+        } */
+            
+        function testDraw() {
+            if (tourdejeu==9 && victory==0){
+             window.alert("Draw !")
+            }
+        }
+
+        
+        function tntxcaseSmall (LaCase) {
+        /* if(pion==undefined){pion="x"} else if (pion=="x"){pion="o"}else if(pion=="o"){pion="x"} */
+        if (tourdejeu%2==0){pion="x"} else if (tourdejeu%2==1){pion="o"}
+        if (!LaCase.innerText && victory==0) {
+            LaCase.innerText=pion
+            megabrainstormHori();
+            megabrainstormVerti()
+            megabrainstormDiag();
+            //testcombiHori();
+            //testcombiVerti();
+            //testcombidiag();
+            victoiredeO();
+            victoiredeX();
+            tourdejeu++
+            testDraw();
+            
+        }
+        //console.log(tourdejeu)
+        return pion,tourdejeu
+        }
+
+        
+
+    ///////////////////////////////////////////////////
+    
+    /*var kevin = document.getElementById('kevin');
+    //kevin.innerHTML="<p>Bonjour, je me nomme Kevin</p>"
+    var textkeke = document.createTextNode("Bonsoir JP ");
+    var element1 = document.createElement("br");
+    kevin.appendChild(textkeke);
+    kevin.appendChild(element1);
+    var hautecran = window.screen.height;
+    var largecran = window.screen.width;
+    var textecran = document.createTextNode("Mon écran est de résolution " + hautecran +" "+ largecran);
+    kevin.appendChild(textecran);
+    var element2 = document.createElement("br");
+    kevin.appendChild(element2);
+    var ppt = window.prompt("Wassup dude ?");
+    var textppt = document.createTextNode(ppt);
+    kevin.appendChild(textppt);*/
+
+    person = {nom:"vermelle",prenom:"Warren",age:50,affichage:function(){
+        console.log(`${this.nom}+${this.prenom}+${this.age}`)
+    }}
+
+    //person.affichage()
+
+    class utilisateur {
+        constructor(nom,prenom,age){
+            this.nom = nom;
+            this.prenom = prenom;
+            this.age = age;
+            this.affichage = function(){
+                console.log(`${this.nom}+${this.prenom}+${this.age}`)
+            }
+        }
+    }
+
+    var user = new utilisateur('jean','pierre',65) 
+    //user.affichage();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    var date = new Date();
+    var options ={weekday:"long",year:"numeric",month:"long",day:"numeric",hour:"numeric",minute:"numeric"};
+    console.log(date.toLocaleDateString('fr',options));
+</script>

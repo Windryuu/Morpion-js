@@ -1,0 +1,55 @@
+#jeu{
+    display:flex;
+}
+
+#reset{
+    margin-left: 45%;
+    margin-right: 45%;
+    width: 10%;
+    margin-bottom: 10px;
+}
+
+#jou1{
+    width: 100%;
+    height: 470px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#jou2{
+    width: 100%;
+    height: 470px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mrp{
+    background-color: bisque;
+    border : 1px solid black;
+    display : flex;
+    justify-content: center;
+    max-width: 470px;
+    width: 100%;
+}
+
+
+td{
+    border: solid 1px black ;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: 96pt;
+    font-weight: bold;
+}
+
+td:hover{
+    background-color: cadetblue;
+}
+
+#laug {
+    margin-top: 10px;
+    margin-left: 40%;
+    width: 20%;
+    text-align: center;
+}
